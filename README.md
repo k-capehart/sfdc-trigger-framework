@@ -1,25 +1,31 @@
-# SFDC trigger framework
-
-[![npm version](https://badge.fury.io/js/sfdc-trigger-framework.svg)](https://badge.fury.io/js/sfdc-trigger-framework)
-[![Maintainability](https://api.codeclimate.com/v1/badges/eeeae5a492e34feace99/maintainability)](https://codeclimate.com/github/kevinohara80/sfdc-trigger-framework/maintainability)
-
-I know, I know...another trigger framework. Bear with me. ;)
+# SFDC trigger framework (modified)
 
 ## Overview
 
-Triggers should (IMO) be logicless. Putting logic into your triggers creates un-testable, difficult-to-maintain code. It's widely accepted that a best-practice is to move trigger logic into a handler class.
+Forked from [kevinohara/sfdc-trigger-framework](https://github.com/kevinohara80/sfdc-trigger-framework).
 
-This trigger framework bundles a single **TriggerHandler** base class that you can inherit from in all of your trigger handlers. The base class includes context-specific methods that are automatically called when a trigger is executed.
+This framework is modified by introducing a few additional concepts borrowed from [Apex Enterprise Patterns](https://github.com/apex-enterprise-patterns/fflib-apex-common-samplecode/tree/master) as well as a common pattern designed to use Custom Settings to bypass triggers.
 
-The base class also provides a secondary role as a supervisor for Trigger execution. It acts like a watchdog, monitoring trigger activity and providing an api for controlling certain aspects of execution and control flow.
+3 new overridable methods have been added:
+* `isDisabled()`
+  - Intended to be used with a Custom Setting
+  - If it returns false, then skip all other methods
+* `applyDefaults()`
+  - Runs before the `beforeInsert()` method
+* `validate()`
+  - Runse before the `afterInsert()` and `afterUpdate()` methods
 
-But the most important part of this framework is that it's minimal and simple to use. 
+<br/>
+
+Simple use case: [k-capehart/sfdc-dev-org](https://github.com/k-capehart/sfdc-dev-org/blob/main/force-app/main/default/classes/AccountTriggerHandler.cls)
+
+<br/>
 
 **Deploy to SFDX Scratch Org:**
-[![Deploy](https://deploy-to-sfdx.com/dist/assets/images/DeployToSFDX.svg)](https://deploy-to-sfdx.com)
+[Deploy](https://deploy-to-sfdx.com)
 
 **Deploy to Salesforce Org:**
-[![Deploy](https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png)](https://githubsfdeploy.herokuapp.com/?owner=kevinohara80&repo=sfdc-trigger-framework&ref=master)
+[Deploy](https://githubsfdeploy.herokuapp.com/?owner=kevinohara80&repo=sfdc-trigger-framework&ref=master)
 
 ## Usage
 
@@ -148,3 +154,6 @@ Here are all of the methods that you can override. All of the context possibilit
 * `afterUpdate()`
 * `afterDelete()`
 * `afterUndelete()`
+* `isDisabled()`
+* `applyDefaults()`
+* `validate()`
