@@ -4,7 +4,7 @@
 
 Forked from [kevinohara/sfdc-trigger-framework](https://github.com/kevinohara80/sfdc-trigger-framework).
 
-This framework is modified by introducing a few additional concepts borrowed from [Apex Enterprise Patterns](https://github.com/apex-enterprise-patterns/fflib-apex-common-samplecode/tree/master) as well as a common pattern designed to use Custom Settings to bypass triggers.
+This framework is modified by introducing a few additional concepts borrowed from [Apex Enterprise Patterns](https://github.com/apex-enterprise-patterns/fflib-apex-common/blob/master/sfdx-source%2Fapex-common%2Fmain%2Fclasses%2Ffflib_SObjectDomain.cls) as well as a common pattern designed to use Custom Settings to bypass triggers.
 
 3 new overridable methods have been added:
 * `isDisabled()`
