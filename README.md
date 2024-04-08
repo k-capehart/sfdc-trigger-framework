@@ -17,7 +17,19 @@ This framework is modified by introducing a few additional concepts borrowed fro
 
 <br/>
 
-Simple use case: [k-capehart/sfdc-dev-org](https://github.com/k-capehart/sfdc-dev-org/blob/main/force-app/main/default/classes/AccountTriggerHandler.cls)
+Simple example:
+
+```apex
+public with sharing class AccountTriggerHandler extends TriggerHandler {
+    public override Boolean isDisabled() {
+        return BypassAutomation__c.getInstance().Accounts__c;
+    }
+
+    public override void applyDefaults() {}
+
+    public override void validate() {}
+}
+```
 
 <br/>
 
